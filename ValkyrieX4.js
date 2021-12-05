@@ -57,6 +57,7 @@ const { yta, ytv, igdl, upload, formatDate } = require('./lib/ytdl')
 const { webp2mp4File} = require('./lib/webp2mp4')
 const time = moment().tz('Asia/Jakarta').format("HH:mm:ss")
 const afk = JSON.parse(fs.readFileSync('./lib/off.json'))
+const { webp2gifFile, igDownloader, TiktokDownloader } = require('./lib/gif.js')
 const { sleep, isAfk, cekafk, addafk } = require('./lib/offline')
 const voting = JSON.parse(fs.readFileSync('./lib/voting.json'))
 const { addVote, delVote } = require('./lib/vote')
@@ -705,7 +706,7 @@ case 'own':
 			{}
 		)
 	    Valkyrie.relayWAMessage(ValkyrieX4·Team, {waitForAck: true})     
-                break					
+                break			
 // CREDITS TEAM
      case 'owner1':
          members_ids = []
@@ -921,6 +922,118 @@ ANGGOTA TEAM
             "jpegThumbnail": fs.readFileSync('./stik/thumb.jpeg')
   }}, MessageType.buttonsMessage,{ quoted: floc,thumbnail: fs.readFileSync('./stik/thumb.jpeg'), contextInfo: { forwardingScore: 508, isForwarded: true, externalAdReply:{title: `${ucapanWaktu}`,body:`${pushname}`,mediaType:"2",thumbnail:fs.readFileSync('./stik/thumb.jpeg'),mediaUrl:`https://youtube.com/channel/UC7NslQroUqQYzo2wDFBOUMg`}}})
   break
+case 'nuliskiri':{
+                if (args.length < 1) return reply(`Kirim perintah *${prefix}nuliskiri* teks`)
+                reply(mess.wait)
+                const tulisan = body.slice(11)
+                const splitText = tulisan.replace(/(\S+\s*){1,9}/g, '$&\n')
+                const fixHeight = splitText.split('\n').slice(0, 31).join('\n')
+                spawn('convert', [
+                    './media/nulis/images/buku/sebelumkiri.jpg',
+                    '-font',
+                    './media/nulis/font/Indie-Flower.ttf',
+                    '-size',
+                    '960x1280',
+                    '-pointsize',
+                    '22',
+                    '-interline-spacing',
+                    '2',
+                    '-annotate',
+                    '+140+153',
+                    fixHeight,
+                    './media/nulis/images/buku/setelahkiri.jpg'
+                ])
+                .on('error', () => reply(mess.error.api))
+                .on('exit', () => {
+                    Valkyrie.sendMessage(from, fs.readFileSync('./media/nulis/images/buku/setelahkiri.jpg'), image, {quoted: mek, caption: `Jangan malas pak...`})
+                    
+                })
+            }
+                break
+case 'nuliskanan':{
+                if (args.length < 1) return reply(`Kirim perintah *${prefix}nuliskanan* teks`)
+                reply(mess.wait)
+                const tulisan = body.slice(12)
+                const splitText = tulisan.replace(/(\S+\s*){1,9}/g, '$&\n')
+                const fixHeight = splitText.split('\n').slice(0, 31).join('\n')
+                spawn('convert', [
+                    './media/nulis/images/buku/sebelumkanan.jpg',
+                    '-font',
+                    './media/nulis/font/Indie-Flower.ttf',
+                    '-size',
+                    '960x1280',
+                    '-pointsize',
+                    '23',
+                    '-interline-spacing',
+                    '2',
+                    '-annotate',
+                    '+128+129',
+                    fixHeight,
+                    './media/nulis/images/buku/setelahkanan.jpg'
+                ])
+                .on('error', () => reply(mess.error.api))
+                .on('exit', () => {
+                    Valkyrie.sendMessage(from, fs.readFileSync('./media/nulis/images/buku/setelahkanan.jpg'), image, {quoted: mek, caption: `Jangan malas pak...`})
+                    
+                })
+            }
+                break
+            case 'foliokiri':{
+                if (args.length < 1) return reply(`Kirim perintah *${prefix}foliokiri* teks`)
+                reply(mess.wait)
+                const tulisan = body.slice(11)
+                const splitText = tulisan.replace(/(\S+\s*){1,13}/g, '$&\n')
+                const fixHeight = splitText.split('\n').slice(0, 38).join('\n')
+                spawn('convert', [
+                    './media/nulis/images/folio/sebelumkiri.jpg',
+                    '-font',
+                    './media/nulis/font/Indie-Flower.ttf',
+                    '-size',
+                    '1720x1280',
+                    '-pointsize',
+                    '23',
+                    '-interline-spacing',
+                    '4',
+                    '-annotate',
+                    '+48+185',
+                    fixHeight,
+                    './media/nulis/images/folio/setelahkiri.jpg'
+                ])
+                .on('error', () => reply(mess.error.api))
+                .on('exit', () => {
+                    Valkyrie.sendMessage(from, fs.readFileSync('./media/nulis/images/folio/setelahkiri.jpg'), image, {quoted: mek, caption: `Jangan malas pak...`})
+                    
+                })
+            }
+                break
+            case 'foliokanan':{
+                if (args.length < 1) return reply(`Kirim perintah *${prefix}foliokanan* teks`)
+                reply(mess.wait)
+                const tulisan = body.slice(12)
+                const splitText = tulisan.replace(/(\S+\s*){1,13}/g, '$&\n')
+                const fixHeight = splitText.split('\n').slice(0, 38).join('\n')
+                spawn('convert', [
+                    './media/nulis/images/folio/sebelumkanan.jpg',
+                    '-font',
+                    './media/nulis/font/Indie-Flower.ttf',
+                    '-size',
+                    '960x1280',
+                    '-pointsize',
+                    '23',
+                    '-interline-spacing',
+                    '3',
+                    '-annotate',
+                    '+89+190',
+                    fixHeight,
+                    './media/nulis/images/folio/setelahkanan.jpg'
+                ])
+                .on('error', () => reply(mess.error.api))
+                .on('exit', () => {
+                    Valkyrie.sendMessage(from, fs.readFileSync('./media/nulis/images/folio/setelahkanan.jpg'), image, {quoted: mek, caption: `Jangan malas pak...`})
+                    
+                })
+            }
+                break
 case 'menuxlsx':
 Valkyrie.sendMessage(from, {"contentText": `Hai Kak *${pushname}* ${ucapanWaktu}
 
@@ -1125,6 +1238,10 @@ menuh = `${ucapanWaktu} 𝐊𝐚𝐤 @${sender.split("@")[0]}
 ꪶ ཻུ۪۪ꦽꦼ̷ _*${prefix}fdeface*_
 ꪶ ཻུ۪۪ꦽꦼ̷ _*${prefix}emoji*_
 ꪶ ཻུ۪۪ꦽꦼ̷ _*${prefix}nulis*_
+ꪶ ཻུ۪۪ꦽꦼ̷ _*${prefix}nuliskanan*_
+ꪶ ཻུ۪۪ꦽꦼ̷ _*${prefix}nuliskiri*_
+ꪶ ཻུ۪۪ꦽꦼ̷ _*${prefix}foliokanan*_
+ꪶ ཻུ۪۪ꦽꦼ̷ _*${prefix}foliokiri*_
 
 「 𝐂𝐎𝐍𝐕𝐄𝐑𝐓 」
 ꪶ ཻུ۪۪ꦽꦼ̷ _*${prefix}toimg*_
@@ -1306,8 +1423,8 @@ menuh = `${ucapanWaktu} 𝐊𝐚𝐤 @${sender.split("@")[0]}
 ꪶ ཻུ۪۪ꦽꦼ̷ _*${prefix}ig*_ <link>
 ꪶ ཻུ۪۪ꦽꦼ̷ _*${prefix}igstory*_ <username>
 ꪶ ཻུ۪۪ꦽꦼ̷ _*${prefix}twitter*_ <link>
-ꪶ ཻུ۪۪ꦽꦼ̷ _*${prefix}tiktok*_ <link>
-ꪶ ཻུ۪۪ꦽꦼ̷ _*${prefix}tiktokaudio*_ <link>
+ꪶ ཻུ۪۪ꦽꦼ̷ _*${prefix}tiktokwm*_ <link>
+ꪶ ཻུ۪۪ꦽꦼ̷ _*${prefix}tiktoknowm*_ <link>
 ꪶ ཻུ۪۪ꦽꦼ̷ _*${prefix}fb*_ <link>
 ꪶ ཻུ۪۪ꦽꦼ̷ _*${prefix}brainly*_ <query>
 ꪶ ཻུ۪۪ꦽꦼ̷ _*${prefix}image*_ <query>
@@ -1528,13 +1645,20 @@ case 'payment':
            }
                listmsg(from, `hai kak ${pushname} \n\nSilahkan pilih metode pembayaran di bawah ya !`,`  `, list)
                break
- case 'allmenu2':
+ case 'kir':
 	menunyai = `
-*🌹ℍ𝔼𝕃𝕃𝕆𝕎𝕆ℝ𝕃𝔻🌹*
-
-
-
-*──────" 𝕰𝖓𝖉𝖎𝖓𝖌 𝕺𝖋 𝕸𝖊𝖓𝖚 "──────*`
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	`
 var imgs = await Valkyrie.prepareMessage('0@c.us', tamnel, image, { thumbnail: tamnel })
             var imgCatalog = imgs.message.imageMessage
             var ctlg = await Valkyrie.prepareMessageFromContent(from, {
@@ -1780,6 +1904,21 @@ case 'cerpen':
               prep = await Valkyrie.prepareMessageFromContent(from,{buttonsMessage},{quoted: mek})
               Valkyrie.relayWAMessage(prep)
         break
+case 'quotes':
+    quotes = await fetchJson(`https://api.lolhuman.xyz/api/random/quotes?apikey=KurrXd`)
+    quotes = quotes.result
+    author = quotes.by
+    quotes = quotes.quote
+    reply(`_${quotes}_\n\n*â€• ${author}*`)
+    break
+case 'quotesanime':
+    quotes = await fetchJson(`https://api.lolhuman.xyz/api/random/quotesnime?apikey=KurrXd`)
+    quotes = quotes.result
+    quote = quotes.quote
+    char = quotes.character
+    episode = quotes.episode
+    reply(`_${quote}_\n\n*• ${char}*\n*${episode}*`)
+    break
     case 'totag':
             if ((isMedia && !mek.message.videoMessage || isQuotedSticker) && args.length == 0) {
             encmedia = isQuotedSticker ? JSON.parse(JSON.stringify(mek).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo : mek
@@ -2947,6 +3086,44 @@ case 'tiktok':
                         Valkyrie.sendMessage(from, gambar, image, {thumbnail: Buffer.alloc(0), caption: `Subrek : KirBotz×`, quoted : mek})
                     })
                     break
+                    case 'xnxxsearch':
+    if (args.length == 0) return reply(`Example: ${prefix + command} Japanese`)
+    query = args.join(" ")
+    get_result = await fetchJson(`https://api.lolhuman.xyz/api/xnxxsearch?apikey=KurrXd&query=${query}`)
+    get_result = get_result.result
+    ini_txt = ""
+    for (var x of get_result) {
+        ini_txt += `Title : ${x.title}\n`
+        ini_txt += `Views : ${x.views}\n`
+        ini_txt += `Duration : ${x.duration}\n`
+        ini_txt += `Uploader : ${x.uploader}\n`
+        ini_txt += `Link : ${x.link}\n`
+        ini_txt += `Thumbnail : ${x.thumbnail}\n\n`
+    }
+    reply(ini_txt)
+    break
+    case 'xnxx':
+    if (args.length == 0) return reply(`Example: ${prefix + command} https://www.xnxx.com/video-uy5a73b/mom_is_horny_-_brooklyn`)
+    query = args.join(" ")
+    get_result = await fetchJson(`https://api.lolhuman.xyz/api/xnxx?apikey=KurrXd&url=${query}`)
+    get_result = get_result.result
+    ini_txt = `Title : ${get_result.title}\n`
+    ini_txt += `Duration : ${get_result.duration}\n`
+    ini_txt += `View : ${get_result.view}\n`
+    ini_txt += `Rating : ${get_result.rating}\n`
+    ini_txt += `Like : ${get_result.like}\n`
+    ini_txt += `Dislike : ${get_result.dislike}\n`
+    ini_txt += `Comment : ${get_result.comment}\n`
+    ini_txt += `Tag : ${get_result.tag.join(", ")}\n`
+    ini_txt += `Description : ${get_result.description}\n`
+    ini_txt += "Link : \n"
+    ini_link = get_result.link
+    for (var x of ini_link) {
+        ini_txt += `${x.type} - ${x.link}\n\n`
+    }
+    thumbnail = await getBuffer(get_result.thumbnail)
+    await Valkyrie.sendMessage(from, thumbnail, image, { quoted: mek , caption: ini_txt })
+    break
                     case 'nulis':
         case 'tulis':
                if (args.length < 1) return reply('Yang mau di tulis apaan?')
@@ -3140,32 +3317,22 @@ case 'tiktok':
             Valkyrie.sendMessage(from,{url:images},image,{quoted:mek})
             });
             break
- 	case 'tiktokdl':
- 		if (!isUrl(args[0]) && !args[0].includes('tiktok.com')) return reply(mess.Iv)
- 		if (!q) return fakegroup('Linknya?')
- 		sticWait(from)
-		hx.ttdownloader(`${args[0]}`)
-    		.then(result => {
-    		const { wm, nowm, audio } = result
-    		axios.get(`https://tinyurl.com/api-create.php?url=${nowm}`)
-    		.then(async (a) => {
-    		me = `*Link* : ${a.data}`
-		Valkyrie.sendMessage(from,{url:`${nowm}`},video,{mimetype:'video/mp4',quoted:mek,caption:me})
-		})
-		})
-     		.catch(e => console.log(e))
-     		break
-    case 'tiktokaudio':
- 		if (!isUrl(args[0]) && !args[0].includes('tiktok.com')) return reply(mess.Iv)
- 		if (!q) return fakegroup('Linknya?')
- 		sticWait(from)
- 		hx.ttdownloader(`${args[0]}`)
-    		.then(result => {
-    		const { audio} = result
-            sendMediaURL(from,audio,'')
-    		})
-     		.catch(e => console.log(e))
-     		break
+ 	case 'tiktokwm':
+             if (!q) return reply('Linknya?')
+             if (!q.includes('tiktok')) return reply(mess.error.Iv)
+             reply(mess.wait)
+             anu = await TiktokDownloader(`${q}`)
+            .then((data) => { sendMediaURL(from, data.result.watermark) })
+            .catch((err) => { reply(String(err)) })
+             break
+    case 'tiktoknowm': 
+             if (!q) return reply('Linknya?')
+             if (!q.includes('tiktok')) return reply(mess.error.Iv)
+             reply(mess.wait)
+             anu = await TiktokDownloader(`${q}`)
+            .then((data) => { sendMediaURL(from, data.result.nowatermark) })
+            .catch((err) => { reply(String(err)) })
+             break
     case 'brainly':
 			if (args.length < 1) return reply('Pertanyaan apa')
           	brien = args.join(' ')
